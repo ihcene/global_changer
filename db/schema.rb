@@ -42,8 +42,8 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_16_191817) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
-  create_table "emission_calculation_request_items", force: :cascade do |t|
-    t.bigint "emission_calculation_request_id", null: false
+  create_table "emission_calculation_items", force: :cascade do |t|
+    t.bigint "emission_calculation_id", null: false
     t.bigint "emission_factor_id"
     t.decimal "quantity", precision: 10, scale: 2, default: "0.0", null: false
     t.string "unit", default: "", null: false
@@ -51,11 +51,11 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_16_191817) do
     t.string "error_message", default: "", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["emission_calculation_request_id"], name: "idx_on_emission_calculation_request_id_6f8c7955e4"
-    t.index ["emission_factor_id"], name: "index_emission_calculation_request_items_on_emission_factor_id"
+    t.index ["emission_calculation_id"], name: "index_emission_calculation_items_on_emission_calculation_id"
+    t.index ["emission_factor_id"], name: "index_emission_calculation_items_on_emission_factor_id"
   end
 
-  create_table "emission_calculation_requests", force: :cascade do |t|
+  create_table "emission_calculations", force: :cascade do |t|
     t.boolean "processed_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -71,6 +71,6 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_16_191817) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "emission_calculation_request_items", "emission_calculation_requests"
-  add_foreign_key "emission_calculation_request_items", "emission_factors"
+  add_foreign_key "emission_calculation_items", "emission_calculations"
+  add_foreign_key "emission_calculation_items", "emission_factors"
 end

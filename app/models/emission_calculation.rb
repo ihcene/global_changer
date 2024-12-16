@@ -1,6 +1,6 @@
-class EmissionCalculationRequest < ApplicationRecord
+class EmissionCalculation < ApplicationRecord
   has_one_attached :file
-  has_many :items, class_name: 'EmissionCalculationRequestItem', dependent: :destroy
+  has_many :items, class_name: 'EmissionCalculationItem', dependent: :destroy
 
   after_create { Job.perform_later(self) }
 

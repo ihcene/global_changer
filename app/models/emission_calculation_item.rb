@@ -1,5 +1,5 @@
-class EmissionCalculationRequestItem < ApplicationRecord
-  belongs_to :emission_calculation_request
+class EmissionCalculationItem < ApplicationRecord
+  belongs_to :emission_calculation
   belongs_to :emission_factor, optional: true
 
   before_save :compute
