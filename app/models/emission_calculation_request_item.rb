@@ -2,6 +2,8 @@ class EmissionCalculationRequestItem < ApplicationRecord
   belongs_to :emission_calculation_request
   belongs_to :emission_factor, optional: true
 
+  before_save :compute
+
   def compute
     self.computed_emission_in_grams =
       if unit == emission_factor.factor_unit
