@@ -1,0 +1,20 @@
+<% @emission_calculation.items.each do |item| %>
+<div class="card border border-gray-300 p-4 m-4 rounded-lg shadow-md">
+  <div class="text-blue-500">
+    <h2 class="text-2xl"><%= item.emission_factor&.name %></h2>
+  </div>
+  <% if item.computed_emission_in_grams.present? %>
+  <div class="text-green-500">
+    <strong>Computed Emission:</strong> <%= item.computed_emission_in_grams %> grams
+  </div>
+  <% elsif item.error_message.present? %>
+  <div class="text-red-500">
+    <strong>Error:</strong> <%= item.error_message %>
+  </div>
+  <% else %>
+  <div class="text-gray-500">
+    <strong>Status:</strong> Not processed yet
+  </div>
+  <% end %>
+</div>
+<% end %>
