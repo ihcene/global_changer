@@ -227,6 +227,7 @@ GEM
       rubocop-performance
       rubocop-rails
     ruby-progressbar (1.13.0)
+    ruby-units (4.1.0)
     rubyzip (2.3.2)
     securerandom (0.4.0)
     sprockets (4.2.1)
@@ -280,6 +281,7 @@ DEPENDENCIES
   rails (~> 7.2.2)
   roo (~> 2.10)
   rubocop-rails-omakase
+  ruby-units (~> 4.1)
   sprockets-rails
   stimulus-rails
   turbo-rails

@@ -55,3 +55,5 @@ end
 
 
 gem "roo", "~> 2.10"
+
+gem "ruby-units", "~> 4.1"
