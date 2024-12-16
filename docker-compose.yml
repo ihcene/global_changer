@@ -1,0 +1,14 @@
+version: "3"
+services:
+  db:
+    image: postgres:17.2
+    ports:
+      - "5454:5432"
+    environment:
+      POSTGRES_USER: global_changer
+      POSTGRES_PASSWORD: password
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+volumes:
+  postgres-data:
