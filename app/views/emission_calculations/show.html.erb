@@ -1,20 +1,36 @@
-<% @emission_calculation.items.each do |item| %>
-<div class="card border border-gray-300 p-4 m-4 rounded-lg shadow-md">
-  <div class="text-blue-500">
-    <h2 class="text-2xl"><%= item.emission_factor&.name %></h2>
+<% if @emission_calculation.items.empty? %>
+  <div class="loading-animation" style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+    <svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="#000">
+      <circle cx="50" cy="50" r="45" stroke="#000" stroke-width="10" fill="none" />
+      <circle cx="50" cy="50" r="35" stroke="#000" stroke-width="6" stroke-dasharray="164.93361431346415 56.97787143782138" stroke-dashoffset="0">
+        <animateTransform attributeName="transform" type="rotate" repeatCount="indefinite" dur="1s" values="0 50 50;360 50 50" keyTimes="0;1" />
+      </circle>
+    </svg>
   </div>
-  <% if item.computed_emission_in_grams.present? %>
-  <div class="text-green-500">
-    <strong>Computed Emission:</strong> <%= item.computed_emission_in_grams %> grams
-  </div>
-  <% elsif item.error_message.present? %>
-  <div class="text-red-500">
-    <strong>Error:</strong> <%= item.error_message %>
-  </div>
-  <% else %>
-  <div class="text-gray-500">
-    <strong>Status:</strong> Not processed yet
-  </div>
+  <script>
+    setTimeout(function() {
+      location.reload();
+    }, 5000);
+  </script>
+<% else %>
+  <% @emission_calculation.items.each do |item| %>
+    <div class="card border border-gray-300 p-4 m-4 rounded-lg shadow-md">
+      <div class="text-blue-500">
+        <h2 class="text-2xl"><%= item.emission_factor&.name %></h2>
+      </div>
+      <% if item.computed_emission_in_grams.present? %>
+      <div class="text-green-500">
+        <strong>Computed Emission:</strong> <%= item.computed_emission_in_grams %> grams
+      </div>
+      <% elsif item.error_message.present? %>
+      <div class="text-red-500">
+        <strong>Error:</strong> <%= item.error_message %>
+      </div>
+      <% else %>
+      <div class="text-gray-500">
+        <strong>Status:</strong> Not processed yet
+      </div>
+      <% end %>
+    </div>
   <% end %>
-</div>
 <% end %>
