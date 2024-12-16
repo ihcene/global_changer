@@ -56,6 +56,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_16_191817) do
   end
 
   create_table "emission_calculations", force: :cascade do |t|
+    t.string "name", default: "", null: false
     t.boolean "processed_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

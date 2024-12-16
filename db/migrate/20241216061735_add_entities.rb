@@ -9,6 +9,7 @@ class AddEntities < ActiveRecord::Migration[7.2]
     end
 
     create_table :emission_calculations do |t|
+      t.string :name, default: '', null: false
       t.boolean :processed_at
 
       t.timestamps

@@ -20,7 +20,8 @@ end
 
 sample_file = Rails.root.join('db', 'seeds', 'emissions_sample_data.xlsx')
 
-EmissionCalculationRequest.create(
+EmissionCalculation.create(
+  name: 'Sample Emission Calculation',
   file: {
     io: File.open(sample_file),
     filename: File.basename(sample_file),
