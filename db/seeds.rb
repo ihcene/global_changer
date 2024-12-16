@@ -7,3 +7,13 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+
+require 'roo'
+
+xlsx = Roo::Spreadsheet.open(Rails.root.join('db', 'seeds', 'emission_factors.xlsx').to_s)
+
+xlsx.sheet(0).each(name: 'Name', quantity: 'Quantity', unit: 'Unit').with_index do |data, i|
+  next if i.zero?
+
+  EmissionFactor.find_or_initialize_by(name: data[:name]).update(quantity: data[:quantity], unit: data[:unit])
+end
