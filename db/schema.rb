@@ -46,7 +46,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_16_191817) do
     t.bigint "emission_calculation_request_id", null: false
     t.bigint "emission_factor_id"
     t.decimal "quantity", precision: 10, scale: 2, default: "0.0", null: false
-    t.decimal "normalized_quantity", precision: 10, scale: 2, default: "0.0", null: false
+    t.string "unit", default: "", null: false
     t.decimal "computed_emission_in_grams", precision: 10, scale: 2
     t.string "error_message", default: "", null: false
     t.datetime "created_at", null: false

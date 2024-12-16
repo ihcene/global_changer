@@ -19,7 +19,7 @@ class AddEntities < ActiveRecord::Migration[7.2]
       t.references :emission_factor, foreign_key: true
 
       t.decimal :quantity, precision: 10, scale: 2, default: 0.0, null: false
-      t.decimal :normalized_quantity, precision: 10, scale: 2, default: 0.0, null: false
+      t.string :unit, default: '', null: false
 
       t.decimal :computed_emission_in_grams, precision: 10, scale: 2
 
