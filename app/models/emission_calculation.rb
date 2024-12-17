@@ -7,24 +7,17 @@ class EmissionCalculation < ApplicationRecord
   def process!
     return if processed_at?
 
-    file.open do |file_stream|
-      xlsx = Roo::Spreadsheet.open(file_stream)
-      xlsx.sheet(0).each(source: "Emission Source",	quantity: "Quantity", unit: "Unit", factor_name: "Emission Factor Name").with_index do |data, i|
-        next if i.zero?
+    transaction do
+      file.open do |file_stream|
+        xlsx = Roo::Spreadsheet.open(file_stream)
+        xlsx.sheet(0).each(source: "Emission Source",	quantity: "Quantity", unit: "Unit", factor_name: "Emission Factor Name").with_index do |data, i|
+          next if i.zero?
 
-        factor = EmissionFactor.find_by(name: data[:factor_name])
-        item = items.build(quantity: data[:quantity], unit: data[:unit])
-
-        if factor
-          item.emission_factor = factor
-        else
-          item.error_message = "Emission factor not found"
+          items.create!(data)
         end
 
-        item.save!
+        update!(processed_at: Time.current)
       end
-
-      update!(processed_at: Time.current)
     end
   end
 

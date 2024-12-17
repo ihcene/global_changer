@@ -4,6 +4,14 @@ class EmissionCalculationItem < ApplicationRecord
 
   before_save :compute
 
+  def factor_name=(name)
+    self.emission_factor = EmissionFactor.find_by!(name:)
+  rescue ActiveRecord::RecordNotFound
+    self.error_message = "Emission factor not found"
+  end
+
+  private
+
   def compute
     self.computed_emission_in_grams =
       if unit == emission_factor.factor_unit
