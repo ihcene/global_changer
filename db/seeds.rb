@@ -17,14 +17,3 @@ xlsx.sheet(0).each(name: 'Name', quantity: 'Quantity', unit: 'Unit').with_index 
 
   EmissionFactor.find_or_initialize_by(name: data[:name]).update(quantity: data[:quantity], unit: data[:unit])
 end
-
-sample_file = Rails.root.join('db', 'seeds', 'emissions_sample_data.xlsx')
-
-EmissionCalculation.create(
-  name: 'Sample Emission Calculation',
-  file: {
-    io: File.open(sample_file),
-    filename: File.basename(sample_file),
-    content_type: Marcel::MimeType.for(File.open(sample_file))
-  }
-)
