@@ -12,7 +12,7 @@
       <% @emission_calculations.each do |calculation| %>
       <tr>
         <td class="py-2 px-4 border-b"><%= calculation.id %></td>
-        <td class="py-2 px-4 border-b"><%= calculation.name %></td>
+        <td class="py-2 px-4 border-b"><%= link_to calculation.name, calculation %></td>
         <td class="py-2 px-4 border-b">
           <%= link_to 'Show', emission_calculation_path(calculation), class: "text-blue-500 hover:underline" %>
         </td>
