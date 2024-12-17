@@ -1,24 +1,38 @@
-# README
+# Global Changer Technical Test
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This repository contains a technical test solution for the company Global Changer.
 
-Things you may want to cover:
+## Prerequisites
 
-* Ruby version
+Make sure you have the following installed:
+- Docker
+- Docker Compose
+- Ruby (3.1+)
+- Bundler
 
-* System dependencies
+## Installation
 
-* Configuration
+To avoid conflicts with other instances of Postgres, this project connects to different ports. PostgreSQL can be launched with the provided Docker Compose file.
 
-* Database creation
+1. **Install Ruby dependencies:**
+    ```sh
+    bundle install
+    ```
 
-* Database initialization
+2. **Start Docker containers:**
+    ```sh
+    docker-compose up
+    ```
 
-* How to run the test suite
+3. **Set up the database:**
+    ```sh
+    bin/rails db:setup
+    ```
 
-* Services (job queues, cache servers, search engines, etc.)
+## Running the Server
 
-* Deployment instructions
+Launch the server for local development:
 
-* ...
+```sh
+bin/dev
+```
