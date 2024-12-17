@@ -21,7 +21,7 @@
   </div>
   <% if item.computed_emission_in_grams.present? %>
   <div class="text-green-500">
-    <strong>Computed Emission:</strong> <%= item.computed_emission_in_grams %> grams
+    <strong>Computed Emission:</strong> <%= number_with_delimiter(item.computed_emission_in_grams) %> grams
   </div>
   <% elsif item.error_message.present? %>
   <div class="text-red-500">
