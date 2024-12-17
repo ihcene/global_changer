@@ -1,3 +1,12 @@
+
+
+#
+# EmissionCalculationItem represents an item used in emission calculations.
+#
+# Before saving, it computes the emission in grams based on the associated emission factor.
+# The computation is done by multiplying the quantity of the item by the emission factor's quantity in grams.
+# If the units differ, it converts the quantity to the emission factor's unit before multiplying.
+#
 class EmissionCalculationItem < ApplicationRecord
   belongs_to :emission_calculation
   belongs_to :emission_factor, optional: true
