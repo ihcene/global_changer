@@ -19,6 +19,7 @@ class AddEntities < ActiveRecord::Migration[7.2]
       t.references :emission_calculation, null: false, foreign_key: true
       t.references :emission_factor, foreign_key: true
 
+      t.string :source, default: '', null: false
       t.decimal :quantity, precision: 10, scale: 2, default: 0.0, null: false
       t.string :unit, default: '', null: false
 

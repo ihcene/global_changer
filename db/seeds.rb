@@ -15,5 +15,5 @@ xlsx = Roo::Spreadsheet.open(Rails.root.join('db', 'seeds', 'emission_factors.xl
 xlsx.sheet(0).each(name: 'Name', quantity: 'Quantity', unit: 'Unit').with_index do |data, i|
   next if i.zero?
 
-  EmissionFactor.find_or_initialize_by(name: data[:name]).update(quantity: data[:quantity], unit: data[:unit])
+  EmissionFactor.find_or_initialize_by(name: data[:name]).update(data.slice(:quantity, :unit))
 end
